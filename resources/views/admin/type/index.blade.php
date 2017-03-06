@@ -8,6 +8,8 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Categories</th>
+                <th>Updated At</th>
+                <th>Action</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -16,7 +18,9 @@
 				<tr>
 					<td>{{$type->id}}</td>
 					<td>{{$type->name}}</td>
-					<td></td>
+					<td><a href="{{route('category.show', $type->id)}}">{{$type->category->count()}}</a></td>
+					<td>{{$type->created_at->toFormattedDateString()}}</td>
+					<td>{{$type->updated_at->toFormattedDateString()}}</td>
 					<td>
 						<a href="{{route('type.edit', $type->id)}}" class="btn btn-info">Edit</a>
 						{!! Form::open(['route' => ['type.destroy', $type->id], 'method' => 'delete']) !!}
