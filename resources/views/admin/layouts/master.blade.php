@@ -41,7 +41,7 @@
 	</nav>
 
 
-	@yield('contant')
+	@yield('content')
 
 	<!-- Bootstrap core JavaScript
 	================================================== -->
