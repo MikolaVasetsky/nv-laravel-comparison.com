@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Attribute;
 use Illuminate\Http\Request;
 use App\Type;
 
-class CategoryController extends Controller
+class AttributeController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -15,9 +15,9 @@ class CategoryController extends Controller
 	 */
 	public function index()
 	{
-		$categories = Category::latest()->paginate(5);
+		$attributes = Attribute::latest()->paginate(5);
 
-		return view('admin.category.index', compact('categories'));
+		return view('admin.attribute.index', compact('attributes'));
 	}
 
 	/**
@@ -29,7 +29,7 @@ class CategoryController extends Controller
 	{
 		$types = Type::latest()->pluck('name', 'id');
 
-		return view('admin.category.create', compact('types'));
+		return view('admin.attribute.create', compact('types'));
 	}
 
 	/**
@@ -42,65 +42,65 @@ class CategoryController extends Controller
 	{
 		$this->validate(request(), [
 			'type_id' => 'required|integer',
-			'name' => 'required|unique:categories'
+			'name' => 'required|unique:attributes'
 		]);
 
-		Category::create(request()->all());
+		Attribute::create(request()->all());
 
-		return redirect()->route('category.index');
+		return redirect()->route('attribute.index');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\category  $category
+	 * @param  \App\Attribute  $attribute
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		$categories = Category::where('type_id', $id)->get();
-		return view('admin.category.index', compact('categories'));
+		$attributes = Attribute::where('type_id', $id)->get();
+		return view('admin.attribute.index', compact('attributes'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\category  $category
+	 * @param  \App\Attribute  $attribute
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(Category $category)
+	public function edit(Attribute $attribute)
 	{
-		return view('admin.category.edit', compact('category'));
+		return view('admin.attribute.edit', compact('attribute'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\category  $category
+	 * @param  \App\Attribute  $attribute
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Category $category)
+	public function update(Attribute $attribute)
 	{
 		$this->validate(request(), [
-			'name' => 'required|unique:categories'
+			'name' => 'required|unique:attributes'
 		]);
 
-		$category->update(request()->all());
+		$attribute->update(request()->all());
 
-		return redirect()->route('category.index');
+		return redirect()->route('attribute.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\category  $category
+	 * @param  \App\Attribute  $attribute
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Category $category)
+	public function destroy(Attribute $attribute)
 	{
-		$category->delete();
+		$attribute->delete();
 
-		return redirect()->route('category.index');
+		return redirect()->route('attribute.index');
 	}
 }

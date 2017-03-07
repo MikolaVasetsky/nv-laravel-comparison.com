@@ -13,11 +13,17 @@ class Type extends Model
 	   return $this->hasMany(Category::class);
 	}
 
+	public function attribute()
+	{
+	   return $this->hasMany(Attribute::class);
+	}
+
 	protected static function boot() {
 		parent::boot();
 
-		static::deleting(function($category) {
-			$category->category()->delete();
+		static::deleting(function($query) {
+			$query->category()->delete();
+			$query->attribute()->delete();
 		});
 	}
 }

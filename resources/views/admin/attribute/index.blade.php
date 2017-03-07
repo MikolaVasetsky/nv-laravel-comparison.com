@@ -14,16 +14,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			@forelse($categories as $category)
+			@forelse($attributes as $attribute)
 				<tr>
-					<td>{{$category->id}}</td>
-					<td>{{$category->name}}</td>
-					<td>{{$category->type->name}}</td>
-					<td>{{$category->created_at->toFormattedDateString()}}</td>
-					<td>{{$category->updated_at->toFormattedDateString()}}</td>
+					<td>{{$attribute->id}}</td>
+					<td>{{$attribute->name}}</td>
+					<td>{{$attribute->type->name}}</td>
+					<td>{{$attribute->created_at->toFormattedDateString()}}</td>
+					<td>{{$attribute->updated_at->toFormattedDateString()}}</td>
 					<td>
-						<a href="{{route('category.edit', $category->id)}}" class="btn btn-info">Edit</a>
-						{!! Form::open(['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
+						<a href="{{route('attribute.edit', $attribute->id)}}" class="btn btn-info">Edit</a>
+						{!! Form::open(['route' => ['attribute.destroy', $attribute->id], 'method' => 'delete']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 						{!! Form::close() !!}
 					</td>
@@ -33,6 +33,6 @@
 			@endforelse
 		</tbody>
 	</table>
-	{{$categories->links()}}
+	{{$attributes->links()}}
 </div>
 @endsection

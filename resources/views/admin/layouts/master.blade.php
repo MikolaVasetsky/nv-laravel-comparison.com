@@ -38,6 +38,12 @@
 				<a class="dropdown-item" href="{{route('category.index')}}">List</a>
 				<a class="dropdown-item" href="{{route('category.create')}}">Create</a>
 			  </div>
+			<li class="nav-item dropdown active">
+			  <a class="nav-link dropdown-toggle" href="{{route('attribute.index')}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Attribute</a>
+			  <div class="dropdown-menu" aria-labelledby="dropdown02">
+				<a class="dropdown-item" href="{{route('attribute.index')}}">List</a>
+				<a class="dropdown-item" href="{{route('attribute.create')}}">Create</a>
+			  </div>
 			</li>
 			<li class="nav-item">
 			  <a class="nav-link" href="#">Link</a>

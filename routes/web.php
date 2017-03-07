@@ -26,4 +26,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	})->name('admin');
 	Route::resource('type', 'TypeController');
 	Route::resource('category', 'CategoryController');
+	Route::resource('attribute', 'AttributeController');
 });
