@@ -58,7 +58,7 @@ class CategoryController extends Controller
 	 */
 	public function show($id)
 	{
-		$categories = Category::where('type_id', $id)->get();
+		$categories = Category::where('type_id', $id)->latest()->paginate(5);
 		return view('admin.category.index', compact('categories'));
 	}
 
@@ -86,7 +86,7 @@ class CategoryController extends Controller
 			'name' => 'required|unique:categories'
 		]);
 
-		$category->update(request()->all());
+		$category->update(request(['name']));
 
 		return redirect()->route('category.index');
 	}

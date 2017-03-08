@@ -10,12 +10,17 @@ class Type extends Model
 
 	public function category()
 	{
-	   return $this->hasMany(Category::class);
+		return $this->hasMany(Category::class);
 	}
 
 	public function attribute()
 	{
-	   return $this->hasMany(Attribute::class);
+		return $this->hasMany(Attribute::class);
+	}
+
+	public function options()
+	{
+		return $this->hasMany(Options::class);
 	}
 
 	protected static function boot() {
@@ -24,6 +29,7 @@ class Type extends Model
 		static::deleting(function($query) {
 			$query->category()->delete();
 			$query->attribute()->delete();
+			$query->options()->delete();
 		});
 	}
 }

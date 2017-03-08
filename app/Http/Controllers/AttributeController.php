@@ -58,7 +58,7 @@ class AttributeController extends Controller
 	 */
 	public function show($id)
 	{
-		$attributes = Attribute::where('type_id', $id)->get();
+		$attributes = Attribute::where('type_id', $id)->latest()->paginate(5);
 		return view('admin.attribute.index', compact('attributes'));
 	}
 
@@ -86,7 +86,7 @@ class AttributeController extends Controller
 			'name' => 'required|unique:attributes'
 		]);
 
-		$attribute->update(request()->all());
+		$attribute->update(request(['name']));
 
 		return redirect()->route('attribute.index');
 	}

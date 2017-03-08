@@ -9,6 +9,7 @@
 				<th>Name</th>
 				<th>Categories</th>
 				<th>Attributes</th>
+				<th>Options</th>
 				<th>Updated At</th>
 				<th>Action</th>
 				<th>Action</th>
@@ -21,6 +22,7 @@
 					<td>{{$type->name}}</td>
 					<td><a class="btn btn-warning" href="{{route('category.show', $type->id)}}">{{$type->category->count()}}</a></td>
 					<td><a class="btn btn-warning" href="{{route('attribute.show', $type->id)}}">{{$type->attribute->count()}}</a></td>
+					<td><a class="btn btn-warning" href="{{route('options.show', $type->id)}}">{{$type->options->count()}}</a></td>
 					<td>{{$type->created_at->toFormattedDateString()}}</td>
 					<td>{{$type->updated_at->toFormattedDateString()}}</td>
 					<td>
