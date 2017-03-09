@@ -9,7 +9,6 @@
 				<th>Name</th>
 				<th>Type</th>
 				<th>Category</th>
-				<th>Details</th>
 				<th>Created At</th>
 				<th>Updated At</th>
 				<th>Action</th>
@@ -22,7 +21,6 @@
 					<td>{{$product->name}}</td>
 					<td>{{$product->type->name}}</td>
 					<td>{{$product->category->name}}</td>
-					<td><a class="btn btn-warning" href="{{route('product.show', $product->id)}}">More</a></td>
 					<td>{{$product->created_at->toFormattedDateString()}}</td>
 					<td>{{$product->updated_at->toFormattedDateString()}}</td>
 					<td>

@@ -14,10 +14,10 @@
 					{!! Form::select('category_id', $categories, '', ['class' => 'form-control', 'required' => '']) !!}
 				</div>
 
-				<div class="form-group">
+{{-- 				<div class="form-group">
 					{!! Form::label('attribute_id', 'Select attribute') !!}
 					{!! Form::select('attribute_id', $attributes, '', ['class' => 'form-control', 'required' => '']) !!}
-				</div>
+				</div> --}}
 
 				<div class="form-group">
 					{!! Form::label('name', 'Name') !!}
@@ -31,7 +31,7 @@
 							{!! Form::text($field->id, '', ['class' => 'form-control', 'required' => '']) !!}
 						@else
 							<label class="custom-control custom-checkbox">
-								{!! Form::checkbox($field->id, '', '', ['class' => 'custom-control-input']) !!}
+								{!! Form::checkbox($field->id, $field->name, '', ['class' => 'custom-control-input']) !!}
 								<span class="custom-control-indicator"></span>
 								<span class="custom-control-description">{{$field->name}}</span>
 							</label>

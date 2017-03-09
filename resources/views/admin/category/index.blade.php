@@ -18,7 +18,8 @@
 				<tr>
 					<td>{{$category->id}}</td>
 					<td>{{$category->name}}</td>
-					<td>{{$category->type->name}}</td>
+					<td>{{$category->category_name}}</td>
+					{{-- <td>{{$category->type->name}}</td> --}}
 					<td>{{$category->created_at->toFormattedDateString()}}</td>
 					<td>{{$category->updated_at->toFormattedDateString()}}</td>
 					<td>

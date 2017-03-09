@@ -8,8 +8,8 @@ class Category extends Model
 {
 	protected $fillable = ['type_id', 'name'];
 
-	public function type()
-	{
-		return $this->belongsTo(Type::class);
-	}
+	// public function type()
+	// {
+	// 	return $this->belongsTo(Type::class);
+	// }
 }

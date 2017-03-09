@@ -15,7 +15,13 @@ class CategoryController extends Controller
 	 */
 	public function index()
 	{
-		$categories = Category::latest()->paginate(5);
+		// $categories = Category::latest()->paginate(5);
+
+		$categories = Category::latest()
+					->join('types', 'categories.type_id', '=', 'types.id')
+					->select('categories.*', 'types.name as category_name')
+					->paginate(5);
+		// dd($categories);
 
 		return view('admin.category.index', compact('categories'));
 	}

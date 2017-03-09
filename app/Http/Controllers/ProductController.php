@@ -33,7 +33,6 @@ class ProductController extends Controller
 		if (request()->has('type_id')) {
 			$typeId = request()->type_id;
 			$categories = Category::where('type_id', $typeId)->pluck('name', 'id');
-			$attributes = Attribute::where('type_id', $typeId)->pluck('name', 'id');
 
 			$fields = Options::where('type_id', $typeId)->select('id', 'name', 'type_field')->get();
 
@@ -51,7 +50,6 @@ class ProductController extends Controller
 		$this->validate(request(), [
 			'type_id' => 'required|integer',
 			'category_id' => 'required|integer',
-			'attribute_id' => 'required|integer',
 			'name' => 'required',
 			'image' => 'image|mimes:png,jpg,jpeg|max:10000'
 		]);
@@ -70,7 +68,7 @@ class ProductController extends Controller
 			$createArray['image'] = $imageName;
 		}
 
-		$ignoreArray = ['_token', 'type_id', 'category_id', 'attribute_id', 'name', 'image'];
+		$ignoreArray = ['_token', 'type_id', 'category_id', 'name', 'image'];
 
 		foreach(request()->all() as $key => $value) {
 			if ( !in_array($key, $ignoreArray) ) {
@@ -93,7 +91,7 @@ class ProductController extends Controller
 	 */
 	public function show(Product $product)
 	{
-		return view('admin.product.show', compact('product'));
+
 	}
 
 	/**
@@ -104,7 +102,9 @@ class ProductController extends Controller
 	 */
 	public function edit(Product $product)
 	{
-		//
+		$details = json_decode($product->details, true);
+		$fields = Options::where('type_id', $product->type_id)->select('id', 'name', 'type_field')->get();
+		return view('admin.product.edit', compact('product', 'fields', 'details'));
 	}
 
 	/**
@@ -114,9 +114,37 @@ class ProductController extends Controller
 	 * @param  \App\Product  $product
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Product $product)
+	public function update(Product $product)
 	{
-		//
+		$this->validate(request(), [
+			'name' => 'required',
+		]);
+
+		$createArray = [
+			'name' => request('name'),
+		];
+
+		// image upload
+		$image = request()->image;
+		if ( $image ) {
+			$imageName = $image->getClientSize() . $image->getClientOriginalName();
+			$image->move('images', $imageName);
+			$createArray['image'] = $imageName;
+		}
+
+		$ignoreArray = ['_token', 'type_id', 'category_id', 'attribute_id', 'name', 'image', '_method'];
+
+		foreach(request()->all() as $key => $value) {
+			if ( !in_array($key, $ignoreArray) ) {
+				$detailsArray[$key] = $value;
+			}
+		}
+
+		$createArray['details'] = json_encode($detailsArray);
+
+		$product->update($createArray);
+
+		return redirect()->route('product.index');
 	}
 
 	/**
