@@ -23,6 +23,11 @@ class Type extends Model
 		return $this->hasMany(Options::class);
 	}
 
+	public function product()
+	{
+		return $this->hasMany(Product::class);
+	}
+
 	protected static function boot() {
 		parent::boot();
 
@@ -30,6 +35,7 @@ class Type extends Model
 			$query->category()->delete();
 			$query->attribute()->delete();
 			$query->options()->delete();
+			$query->product()->delete();
 		});
 	}
 }

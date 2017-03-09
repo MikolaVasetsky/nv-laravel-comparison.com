@@ -27,10 +27,11 @@ class OptionsController extends Controller
 	 */
 	public function create()
 	{
-		$types = Type::latest()->pluck('name', 'id');
-		$attributes = Attribute::where('type_id', key(current($types)))->pluck('name', 'id');
-
-		return view('admin.options.create', compact('types', 'attributes'));
+		if (request()->has('type_id')) {
+			$attributes = Attribute::where('type_id', request()->type_id)->pluck('name', 'id');
+			return view('admin.options.create', compact('attributes'));
+		}
+		return redirect()->route('admin');
 	}
 
 	/**
@@ -107,12 +108,5 @@ class OptionsController extends Controller
 		$option->delete();
 
 		return redirect()->route('options.index');
-	}
-
-	public function getNewOptions()
-	{
-		$attributes = Attribute::where('type_id', request()->type)->pluck('name', 'id');
-
-		return $attributes;
 	}
 }

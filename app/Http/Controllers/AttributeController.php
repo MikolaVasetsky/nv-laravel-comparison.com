@@ -27,9 +27,10 @@ class AttributeController extends Controller
 	 */
 	public function create()
 	{
-		$types = Type::latest()->pluck('name', 'id');
-
-		return view('admin.attribute.create', compact('types'));
+		if (request()->has('type_id')) {
+			return view('admin.attribute.create');
+		}
+		return redirect()->route('admin');
 	}
 
 	/**
@@ -42,7 +43,7 @@ class AttributeController extends Controller
 	{
 		$this->validate(request(), [
 			'type_id' => 'required|integer',
-			'name' => 'required|unique:attributes'
+			'name' => 'required'
 		]);
 
 		Attribute::create(request()->all());
@@ -83,7 +84,7 @@ class AttributeController extends Controller
 	public function update(Attribute $attribute)
 	{
 		$this->validate(request(), [
-			'name' => 'required|unique:attributes'
+			'name' => 'required'
 		]);
 
 		$attribute->update(request(['name']));

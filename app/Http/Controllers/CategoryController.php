@@ -27,9 +27,10 @@ class CategoryController extends Controller
 	 */
 	public function create()
 	{
-		$types = Type::latest()->pluck('name', 'id');
-
-		return view('admin.category.create', compact('types'));
+		if (request()->has('type_id')) {
+			return view('admin.category.create');
+		}
+		return redirect()->route('admin');
 	}
 
 	/**
@@ -42,7 +43,7 @@ class CategoryController extends Controller
 	{
 		$this->validate(request(), [
 			'type_id' => 'required|integer',
-			'name' => 'required|unique:categories'
+			'name' => 'required'
 		]);
 
 		Category::create(request()->all());
@@ -83,7 +84,7 @@ class CategoryController extends Controller
 	public function update(Category $category)
 	{
 		$this->validate(request(), [
-			'name' => 'required|unique:categories'
+			'name' => 'required'
 		]);
 
 		$category->update(request(['name']));

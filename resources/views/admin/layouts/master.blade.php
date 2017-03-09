@@ -33,28 +33,20 @@
 							</div>
 						</li>
 
-						<li class="nav-item dropdown active">
-							<a class="nav-link dropdown-toggle" href="{{route('category.index')}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown02">
-								<a class="dropdown-item" href="{{route('category.index')}}">List</a>
-								<a class="dropdown-item" href="{{route('category.create')}}">Create</a>
-							</div>
+						<li class="nav-item">
+							<a class="nav-link" href="{{route('category.index')}}">Category</a>
 						</li>
 
-						<li class="nav-item dropdown active">
-							<a class="nav-link dropdown-toggle" href="{{route('attribute.index')}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Attribute</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown02">
-								<a class="dropdown-item" href="{{route('attribute.index')}}">List</a>
-								<a class="dropdown-item" href="{{route('attribute.create')}}">Create</a>
-							</div>
+						<li class="nav-item">
+							<a class="nav-link" href="{{route('attribute.index')}}">Attribute</a>
 						</li>
 
-						<li class="nav-item dropdown active">
-							<a class="nav-link dropdown-toggle" href="{{route('options.index')}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown02">
-								<a class="dropdown-item" href="{{route('options.index')}}">List</a>
-								<a class="dropdown-item" href="{{route('options.create')}}">Create</a>
-							</div>
+						<li class="nav-item">
+							<a class="nav-link" href="{{route('options.index')}}">Options</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="{{route('product.index')}}">Product</a>
 						</li>
 					</ul>
 				</div>
@@ -69,7 +61,7 @@
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script type="text/javascript" src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
 		<script type="text/javascript" src="{{asset('js/tether.min.js')}}"></script>
-		<script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+		{{-- <script type="text/javascript" src="{{asset('js/script.js')}}"></script> --}}
 		<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 	</body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Type;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Attribute;
 
 class TypeController extends Controller
 {
@@ -95,4 +96,13 @@ class TypeController extends Controller
 
 		return redirect()->route('type.index');
 	}
+
+	// public function getNewHtml()
+	// {
+	// 	$typeId = request()->type;
+
+	// 	$attributes = Attribute::where('type_id', request()->type)->pluck('name', 'id');
+
+	// 	return ['attributes' => $attributes];
+	// }
 }

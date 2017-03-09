@@ -4,13 +4,10 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
-			{!! Form::open(['route' => 'options.store', 'method' => 'post', 'files' => true]) !!}
-				<legend>Create type</legend>
+			{!! Form::open(['route' => 'options.store', 'method' => 'post']) !!}
+				<legend>Create option</legend>
 
-				<div class="form-group">
-					{!! Form::label('type_id', 'Select type') !!}
-					{!! Form::select('type_id', $types, '', ['class' => 'form-control', 'required' => '', 'id' => 'select_type']) !!}
-				</div>
+				{!! Form::hidden('type_id', request()->type_id) !!}
 
 				<div class="form-group">
 					{!! Form::label('attribute_id', 'Select attribute') !!}

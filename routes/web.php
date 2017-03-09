@@ -28,6 +28,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::resource('category', 'CategoryController');
 	Route::resource('attribute', 'AttributeController');
 	Route::resource('options', 'OptionsController');
-
-	Route::post('get-new-options', 'OptionsController@getNewOptions');
+	Route::resource('product', 'ProductController');
 });

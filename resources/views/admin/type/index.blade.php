@@ -10,6 +10,7 @@
 				<th>Categories</th>
 				<th>Attributes</th>
 				<th>Options</th>
+				<th>Product</th>
 				<th>Updated At</th>
 				<th>Action</th>
 				<th>Action</th>
@@ -20,9 +21,22 @@
 				<tr>
 					<td>{{$type->id}}</td>
 					<td>{{$type->name}}</td>
-					<td><a class="btn btn-warning" href="{{route('category.show', $type->id)}}">{{$type->category->count()}}</a></td>
-					<td><a class="btn btn-warning" href="{{route('attribute.show', $type->id)}}">{{$type->attribute->count()}}</a></td>
-					<td><a class="btn btn-warning" href="{{route('options.show', $type->id)}}">{{$type->options->count()}}</a></td>
+					<td>
+						<a class="btn btn-warning" href="{{route('category.show', $type->id)}}">{{$type->category->count()}}</a>
+						<a class="btn btn-success" href="{{route('category.create')}}?type_id={{$type->id}}">+</a>
+					</td>
+					<td>
+						<a class="btn btn-warning" href="{{route('attribute.show', $type->id)}}">{{$type->attribute->count()}}</a>
+						<a class="btn btn-success" href="{{route('attribute.create')}}?type_id={{$type->id}}">+</a>
+					</td>
+					<td>
+						<a class="btn btn-warning" href="{{route('options.show', $type->id)}}">{{$type->options->count()}}</a>
+						<a class="btn btn-success" href="{{route('options.create')}}?type_id={{$type->id}}">+</a>
+					</td>
+					<td>
+						<a class="btn btn-warning" href="{{route('product.show', $type->id)}}">{{$type->product->count()}}</a>
+						<a class="btn btn-success" href="{{route('product.create')}}?type_id={{$type->id}}">+</a>
+					</td>
 					<td>{{$type->created_at->toFormattedDateString()}}</td>
 					<td>{{$type->updated_at->toFormattedDateString()}}</td>
 					<td>
